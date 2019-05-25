@@ -18,6 +18,8 @@ Request Method: POST
 
 Create: <https://api.mobipath.online/api/v1/payment/ussd/beta/create>
 
+Method: POST
+
 ```json
     {
         "username": "xxxx",
@@ -60,6 +62,8 @@ The Default status. Other error and information status code will be listed under
 ## Execute Request: 
 
 Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
+
+Method: POST
 
 ```json
 {
