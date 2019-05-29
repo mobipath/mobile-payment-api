@@ -10,6 +10,8 @@ Create: <https://api.mobipath.online/api/v1/payment/ussd/beta/create>
 
 Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
 
+Status: <https://api.mobipath.online/api/v1/payment/ussd/beta/status>
+
 Request Method: POST
 
 # API Create Request
@@ -107,6 +109,42 @@ Payment Success.
 ##### Status Code 199 = System Error
 
 ##### Status Code 255 = Payment Not Success
+
+## Status Response: 
+
+Status: <https://api.mobipath.online/api/v1/payment/ussd/beta/status>
+
+Method: POST
+
+```json
+{
+    "paymentId": "xxxx",
+    "transactionId": "TRXxxxxxxxx",
+}
+```
+
+## Status Response: 
+
+Success status Return with code 200
+
+```json
+    {
+        "status": "PAID/PENDING",
+        "studentId": "xx.xxxx",
+        "amount": xx,
+        "gateway": "xxxxx",
+        "timestamp": "2019-05-29T05:43:26.000Z"
+    }
+```
+
+#### The Error Code and there messages
+
+##### Status Code 250 = All Request Property Not Found
+
+##### Status Code 276 = Database Error
+
+##### Status Code 273 = No Transaction Found
+
 
 ## -----------------------------------------
 
