@@ -43,7 +43,7 @@ The Default status. Other error and information status code will be listed under
         "message": "User Details With Payment Info",
         "name": "XX XX XX",
         "amount": 100,
-        "transactionId": "TRX15587732467279182",
+        "transactionId": "TRXxxxxxxxx",
         "timestamp": "2019-05-25T08:34:06.740Z"
     }
 ```
