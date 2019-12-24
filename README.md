@@ -26,6 +26,7 @@ Method: POST
     {
         "username": "xxxx",
         "password": "xxxx",
+	"merchant_short_code": "xxxx"
         "studentId": "xx.xxxx"
     }
 ```
