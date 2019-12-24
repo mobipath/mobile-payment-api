@@ -27,11 +27,11 @@ Method: POST
         "username": "xxxx",
         "password": "xxxx",
 	"merchantShortCode": "xxxx",
-        "studentId": "xx.xxxx"
+        "studentId": "xxxx"
     }
 ```
 
-Here username and password are given by mobipath. The Student ID must contain the institute ID.
+Here username and password are given by mobipath.
 
 ## Create Response: 
 
@@ -63,6 +63,10 @@ The Default status. Other error and information status code will be listed under
 ##### Status Code 280 = Username or Password invalid
 
 ##### Status Code 230 = No merchant short code found 
+
+##### Status Code 288 = No Institute Found
+
+##### Status Code 289 = Payment method is not enabled for this institute
 
 ## Execute Request: 
 
