@@ -62,6 +62,8 @@ The Default status. Other error and information status code will be listed under
 
 ##### Status Code 280 = Username or Password invalid
 
+##### Status Code 230 = No merchant short code found 
+
 ## Execute Request: 
 
 Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
