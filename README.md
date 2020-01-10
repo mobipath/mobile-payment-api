@@ -82,6 +82,7 @@ Method: POST
 	"paymentTo": "xxxxxxxxxx",
 	"paymentFrom": "xxxxxx",
 	"transactionId": "TRXxxxxxxxx",
+	"merchantShortCode": "xxxxx",
 	"timestamp" : "2018-04-19T12:22:46.236Z"
 }
 ```
