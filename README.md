@@ -1,4 +1,4 @@
-# USSD-Payment-API
+# Billpay USSD Payment API
 
 All required api with documentation
 
@@ -6,11 +6,11 @@ All required api with documentation
 
 ### Payment API Request Link
 
-Create: <https://api.mobipath.online/api/v1/payment/ussd/beta/create>
+Create: <https://api.mobipath.online/api/v1/payment/ussd/nagad/create>
 
-Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
+Execute: <https://api.mobipath.online/api/v1/payment/ussd/nagad/execute>
 
-Status: <https://api.mobipath.online/api/v1/payment/ussd/beta/status>
+Status: <https://api.mobipath.online/api/v1/payment/ussd/nagad/status>
 
 Request Method: POST
 
@@ -18,7 +18,7 @@ Request Method: POST
 
 ## Create Request: 
 
-Create: <https://api.mobipath.online/api/v1/payment/ussd/beta/create>
+Create: <https://api.mobipath.online/api/v1/payment/ussd/nagad/create>
 
 Method: POST
 
@@ -26,7 +26,7 @@ Method: POST
     {
         "username": "xxxx",
         "password": "xxxx",
-	"merchantShortCode": "xxxx",
+	    "merchantWalletNo": "xxxx",
         "studentId": "xxxx"
     }
 ```
@@ -70,7 +70,7 @@ The Default status. Other error and information status code will be listed under
 
 ## Execute Request: 
 
-Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
+Execute: <https://api.mobipath.online/api/v1/payment/ussd/nagad/execute>
 
 Method: POST
 
@@ -82,7 +82,7 @@ Method: POST
 	"paymentTo": "xxxxxxxxxx",
 	"paymentFrom": "xxxxxx",
 	"transactionId": "TRXxxxxxxxx",
-	"merchantShortCode": "xxxxx",
+	"merchantWalletNo": "xxxxx",
 	"timestamp" : "2018-04-19T12:22:46.236Z"
 }
 ```
@@ -120,7 +120,7 @@ Payment Success.
 
 ## Status Response: 
 
-Status: <https://api.mobipath.online/api/v1/payment/ussd/beta/status>
+Status: <https://api.mobipath.online/api/v1/payment/ussd/nagad/status>
 
 Method: POST
 
