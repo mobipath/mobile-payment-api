@@ -42,7 +42,9 @@ The Default status. Other error and information status code will be listed under
     {
         "message": "User Details With Payment Info",
         "name": "XX XX XX",
-        "amount": 100,
+        "amount": 4000, //two invoice total amount with service charge
+        "total_invoice": 2, //two invoice
+        "total_service_charge": 20, //two invoice service charge
         "transactionId": "TRXxxxxxxxx",
         "timestamp": "2019-05-25T08:34:06.740Z"
     }
@@ -78,6 +80,8 @@ Method: POST
 {
 	"studentId": "xx.xxxx",
 	"amount": "xxx",
+    "total_invoice": "xx",
+    "total_service_charge": "xx",
 	"paymentId": "xxxx",
 	"paymentTo": "xxxxxxxxxx",
 	"paymentFrom": "xxxxxx",
@@ -140,6 +144,8 @@ Success status Return with code 200
         "status": "PAID/PENDING",
         "studentId": "xx.xxxx",
         "amount": xx,
+        "total_invoice": xx,
+        "total_service_charge": xx,
         "gateway": "xxxxx",
         "timestamp": "2019-05-29T05:43:26.000Z"
     }
