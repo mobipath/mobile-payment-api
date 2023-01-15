@@ -6,11 +6,11 @@ All required api with documentation
 
 ### Payment API Request Link
 
-Create: <https://api.mobipath.online/api/v1/payment/ussd/beta/create>
+Create: <https://api.mobipath.com/api/v1/payment/ussd/beta/create>
 
-Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
+Execute: <https://api.mobipath.com/api/v1/payment/ussd/beta/execute>
 
-Status: <https://api.mobipath.online/api/v1/payment/ussd/beta/status>
+Status: <https://api.mobipath.com/api/v1/payment/ussd/beta/status>
 
 Request Method: POST
 
@@ -18,7 +18,7 @@ Request Method: POST
 
 ## Create Request: 
 
-Create: <https://api.mobipath.online/api/v1/payment/ussd/beta/create>
+Create: <https://api.mobipath.com/api/v1/payment/ussd/beta/create>
 
 Method: POST
 
@@ -70,7 +70,7 @@ The Default status. Other error and information status code will be listed under
 
 ## Execute Request: 
 
-Execute: <https://api.mobipath.online/api/v1/payment/ussd/beta/execute>
+Execute: <https://api.mobipath.com/api/v1/payment/ussd/beta/execute>
 
 Method: POST
 
@@ -120,7 +120,7 @@ Payment Success.
 
 ## Status Response: 
 
-Status: <https://api.mobipath.online/api/v1/payment/ussd/beta/status>
+Status: <https://api.mobipath.com/api/v1/payment/ussd/beta/status>
 
 Method: POST
 
