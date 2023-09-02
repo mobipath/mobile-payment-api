@@ -4,158 +4,210 @@ All required api with documentation
 
 ## Payment Getway API Documentation
 
-### Payment API Request Link
+## Bkash Payment API Request Link
 
-Create: <https://api.mobipath.online/api/v1/payment/ussd/nagad/create>
+QueryBill: </api/v1/payment/ussd/bkash/queryBill>
 
-Execute: <https://api.mobipath.online/api/v1/payment/ussd/nagad/execute>
+PayBill: </api/v1/payment/ussd/bkash/payBill>
 
-Status: <https://api.mobipath.online/api/v1/payment/ussd/nagad/status>
+SearchTransaction: </api/v1/payment/ussd/bkash/searchTransaction>
 
-Request Method: POST
+# API Request & Response
 
-# API Create Request
+## QueryBill Request:
 
-## Create Request: 
-
-Create: <https://api.mobipath.online/api/v1/payment/ussd/nagad/create>
+QueryBill: </api/v1/payment/ussd/bkash/queryBill>
 
 Method: POST
 
 ```json
     {
-        "username": "xxxx",
-        "password": "xxxx",
-	    "merchantWalletNo": "xxxx",
-        "studentId": "xxxx"
+        "UserName": "XXXXXXX",
+        "Password": "XXXXXXX",
+        "StudentId": "XXXXXX",
+        "BillMonth": "XXXXXX", // "022023"
+        "merchantWalletNo": "XXXXXXXXXXX"
     }
 ```
 
-Here username and password are given by mobipath.
+```
+    Here Username and Password are given by mobipath.
+```
 
-## Create Response: 
+## QueryBill Response: 
 
 API response the condition based on status. The Success response status is 200. 
 The Default status. Other error and information status code will be listed under the json.
 
 ```json
     {
-        "message": "User Details With Payment Info",
-        "name": "XX XX XX",
-        "amount": 100,
-        "transactionId": "TRXxxxxxxxx",
-        "timestamp": "2019-05-25T08:34:06.740Z"
+        "ErrorCode": "XXX", // "200"
+        "ErrorMsg": "XXXXXXXX", // "Success"
+        "BillMonth": "XXXXXX", // "022023"
+        "BillAmount": "XXXX", // "2360"
+        "BillDueDate": "XXXXXXXX", // "20240226"
+        "QueryTime": "XXXXXXXXXXXXXX", // "20230830061008"
+        "AmountBreakdown": {
+            "TotalServiceCharge": 20,
+            "TotalInvoice": 2
+        }
     }
 ```
 
-[Note]: This way the transaction was created. But its only valid for 2 hour. After the that time the create transaction need to new request. Every Request the transaction ID was unique. A single user can request a transaction ones. If in the transaction any new request get then the old request will be invalid.
+[Note]: This way the transaction was created. But its only valid for 6 months. After the that time the create transaction need to new request. Every Request the transaction ID was unique. A single user can request a transaction ones. If in the transaction any new request get then the old request will be invalid.
 
-#### The Error Code and there messages
+#### The ErrorCode and their ErrorMsg
 
-##### Status Code 250 = All Request Property Not Found
+##### Status Code 200 = Success
 
-##### Status Code 265 = No Invoice Found
+##### Status Code 403 = Authentication Failed
 
-##### Status Code 261 = Student Information Not Found
+##### Status Code 404 = Data Not Found
 
-##### Status Code 199 = Internal Error
+##### Status Code 406 = Mandatory Field missing
 
-##### Status Code 280 = Username or Password invalid
+##### Status Code 435 = Data Mismatch
 
-##### Status Code 230 = No merchant short code found 
+##### Status Code 436 = Already Paid
 
-##### Status Code 288 = No Institute Found
+<!-- ##### Status Code 437 = Due date over
 
-##### Status Code 289 = Payment method is not enabled for this institute
+##### Status Code 438 = Minimum amount not paid
 
-## Execute Request: 
+##### Status Code 439 = Pay amount and biller amount not match -->
 
-Execute: <https://api.mobipath.online/api/v1/payment/ussd/nagad/execute>
+##### Status Code 440 = Unknown Error, try again.
+
+## PayBill Request:
+
+PayBill: </api/v1/payment/ussd/bkash/payBill>
 
 Method: POST
 
 ```json
-{
-	"studentId": "xx.xxxx",
-	"amount": "xxx",
-	"paymentId": "xxxx",
-	"paymentTo": "xxxxxxxxxx",
-	"paymentFrom": "xxxxxx",
-	"transactionId": "TRXxxxxxxxx",
-	"merchantWalletNo": "xxxxx",
-	"timestamp" : "2018-04-19T12:22:46.236Z"
-}
-```
-
-[Note]: The payment ID shoud be send from ussd. Without payment ID the transaction will not success or Finish.
-
-## Execute Response: 
-
-Success status Return with code 200
-
-```json
     {
-        "transactionStatus": true,
-        "message": "payment success"
+        "UserName": "XXXXXXX",
+        "Password": "XXXXXXX",
+        "StudentId": "XXXXXX",
+        "BillMonth": "XXXXXX", // "022023"
+        "merchantWalletNo": "XXXXXXXXXXX",
+        "Amount": "XXXX", // "2360"
+        "UserMobileNumber": "01521XXXXXX", // "Not Mandatory"
+        "TrxId": "XXXXXXXXXX",
+        "PayTime": "XXXXXXXXXXXX", // "20230828193516"
     }
 ```
 
-Payment Success.
+```
+    Here Username and Password are given by mobipath.
+```
 
-#### The Error Code and there messages
+## PayBill Response: 
 
-##### Status Code 250 = All Request Property Not Found
+API response the condition based on status. The Success response status is 200. 
+The Default status. Other error and information status code will be listed under the json.
 
-##### Status Code 270 = Response Timeout
+```json
+    {
+        "ErrorCode": "XXX", // "200"
+        "ErrorMsg": "XXXXXXXX", // "Success"
+        "ConsumerName": "XXX XXX XXX",
+        "TotalAmount": "XXXX", // "2360"
+        "TrxId": "XXXXXXXXXX",
+        "MiddlewarePayTime": "XXXXXXXXXXXXX", // "20230830064416"
+        "RefNumber": "01777515669",
+        "AmountBreakdown": {
+            "TotalServiceCharge": 20,
+            "TotalInvoice": 2
+        }
+    }
+```
 
-##### Status Code 271 = Transaction ID not Matched
+[Note]: The Transaction ID(TrxId) should be send from ussd. Without Transaction ID the transaction will not success or Finish.
 
-##### Status Code 260 = No Invoice Found
+#### The ErrorCode and their ErrorMsg
 
-##### Status Code 272 = Amount Not Match, Check Amount
+##### Status Code 200 = Success
 
-##### Status Code 199 = System Error
+##### Status Code 403 = Authentication Failed
 
-##### Status Code 255 = Payment Not Success
+##### Status Code 404 = Data Not Found
 
-## Status Response: 
+##### Status Code 406 = Mandatory Field missing
 
-Status: <https://api.mobipath.online/api/v1/payment/ussd/nagad/status>
+##### Status Code 435 = Data Mismatch
+
+##### Status Code 436 = Already Paid
+
+<!-- ##### Status Code 437 = Due date over
+
+##### Status Code 438 = Minimum amount not paid
+
+##### Status Code 439 = Pay amount and biller amount not match -->
+
+##### Status Code 440 = Unknown Error, try again.
+
+## SearchTransaction Request:
+
+SearchTransaction: </api/v1/payment/ussd/bkash/searchTransaction>
 
 Method: POST
 
 ```json
-{
-    "paymentId": "xxxx",
-    "transactionId": "TRXxxxxxxxx",
-}
-```
-
-## Status Response: 
-
-Success status Return with code 200
-
-```json
     {
-        "status": "PAID/PENDING",
-        "studentId": "xx.xxxx",
-        "amount": xx,
-        "gateway": "xxxxx",
-        "timestamp": "2019-05-29T05:43:26.000Z"
+        "UserName": "XXXXXXX",
+        "Password": "XXXXXXX",
+        "TrxId": "XXXXXXXXXX"
     }
 ```
 
-#### The Error Code and there messages
+```
+    Here Username and Password are given by mobipath.
+```
 
-##### Status Code 250 = All Request Property Not Found
+## SearchTransaction Response: 
 
-##### Status Code 276 = Database Error
+API response the condition based on status. The Success response status is 200. 
+The Default status. Other error and information status code will be listed under the json.
 
-##### Status Code 273 = No Transaction Found
+```json
+    {
+        "ErrorCode": "XXX", // "200"
+        "ErrorMsg": "XXXXXXXX", // "Success"
+        "TotalAmount": XXXX, // "2360"
+        "TrxId": "XXXXXXXXXX",
+        "MiddlewarePayTime": "XXXXXXXXXXXXX", // "20230830064416"
+        "RefNumber": "01777515669",
+    }
+```
+
+[Note]: The Transaction ID(TrxId) should be send from ussd. Without Transaction ID the transaction will not success or Finish.
+
+#### The ErrorCode and their ErrorMsg
+
+##### Status Code 200 = Success
+
+##### Status Code 403 = Authentication Failed
+
+##### Status Code 404 = Data Not Found
+
+##### Status Code 406 = Mandatory Field missing
+
+<!-- ##### Status Code 435 = Data Mismatch
+
+##### Status Code 436 = Already Paid
+
+##### Status Code 437 = Due date over
+
+##### Status Code 438 = Minimum amount not paid
+
+##### Status Code 439 = Pay amount and biller amount not match -->
+
+##### Status Code 440 = Unknown Error, try again.
 
 
 ## -----------------------------------------
 
-## Any issue knock us
+## Any issue knock us with info@mobipath.com
 
 # ------ Thank You ------------
