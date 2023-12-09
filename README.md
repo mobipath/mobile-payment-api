@@ -1,31 +1,30 @@
-# Mobipath - Bkash PayBill(USSD) Payment Webhook
+# Mobipath - Rocket PayBill(USSD) Payment Webhook
 
 All required api with documentation
 
 ## Payment Getway API Documentation
 
-## Bkash Payment API Request Link
+## Rocket Payment API Request Link
 
-QueryBill: </api/v1/payment/ussd/bkash/queryBill>
+QueryBill: </api/v1/payment/ussd/rocket/paymentValidation>
 
-PayBill: </api/v1/payment/ussd/bkash/payBill>
+PayBill: </api/v1/payment/ussd/rocket/paymentConfirmation>
 
-SearchTransaction: </api/v1/payment/ussd/bkash/searchTransaction>
+SearchTransaction: </api/v1/payment/ussd/rocket/getPaymentStatus>
 
 # API Request & Response
 
 ## QueryBill Request:
 
-QueryBill: </api/v1/payment/ussd/bkash/queryBill>
+QueryBill: </api/v1/payment/ussd/rocket/paymentValidation>
 
 Method: POST
 
 ```json
     {
-        "UserName": "XXXXXXX",
-        "Password": "XXXXXXX",
-        "StudentId": "XXXXXX",
-        "BillMonth": "XXXXXX", // "022023"
+        "userId"        : "XXXXXXX",
+        "password"      : "XXXXXXX",
+        "studentId"     : "XXXXXX",
         "merchantWalletNo": "XXXXXXXXXXX"
     }
 ```
@@ -41,15 +40,15 @@ The Default status. Other error and information status code will be listed under
 
 ```json
     {
-        "ErrorCode": "XXX", // "200"
-        "ErrorMsg": "XXXXXXXX", // "Success"
-        "BillMonth": "XXXXXX", // "022023"
-        "BillAmount": "XXXX", // "2360"
-        "BillDueDate": "XXXXXXXX", // "20240226"
-        "QueryTime": "XXXXXXXXXXXXXX", // "20230830061008"
-        "AmountBreakdown": {
-            "TotalServiceCharge": 20,
-            "TotalInvoice": 2
+        "errorCode"     : "XXX", // "200"
+        "errorMsg"      : "XXXXXXXX", // "Success"
+        "studentName"   : "xxxxxxxx",
+        "billAmount"    : "XXXX", // "2360"
+        "billDueDate"   : "XXXXXXXX", // "20240226"
+        "queryTime"     : "XXXXXXXXXXXXXX", // "20230830061008"
+        "amountBreakdown": {
+            "totalServiceCharge": 20,
+            "totalInvoice": 2
         }
     }
 ```
@@ -80,21 +79,19 @@ The Default status. Other error and information status code will be listed under
 
 ## PayBill Request:
 
-PayBill: </api/v1/payment/ussd/bkash/payBill>
+PayBill: </api/v1/payment/ussd/rocket/paymentConfirmation>
 
 Method: POST
 
 ```json
     {
-        "UserName": "XXXXXXX",
-        "Password": "XXXXXXX",
-        "StudentId": "XXXXXX",
-        "BillMonth": "XXXXXX", // "022023"
+        "userId"        : "XXXXXXX",
+        "password"      : "XXXXXXX",
+        "studentId"     : "XXXXXX",
         "merchantWalletNo": "XXXXXXXXXXX",
-        "Amount": "XXXX", // "2360"
-        "UserMobileNumber": "01521XXXXXX", // "Not Mandatory"
-        "TrxId": "XXXXXXXXXX",
-        "PayTime": "XXXXXXXXXXXX", // "20230828193516"
+        "amount"        : "XXXX", // "2360"
+        "trxId"         : "XXXXXXXXXX",
+        "trxDate"       : "XXXXXXXXXXXX", // "20230828193516"
     }
 ```
 
@@ -109,16 +106,17 @@ The Default status. Other error and information status code will be listed under
 
 ```json
     {
-        "ErrorCode": "XXX", // "200"
-        "ErrorMsg": "XXXXXXXX", // "Success"
-        "ConsumerName": "XXX XXX XXX",
-        "TotalAmount": "XXXX", // "2360"
-        "TrxId": "XXXXXXXXXX",
-        "MiddlewarePayTime": "XXXXXXXXXXXXX", // "20230830064416"
-        "RefNumber": "01777515669",
-        "AmountBreakdown": {
-            "TotalServiceCharge": 20,
-            "TotalInvoice": 2
+        "errorCode"         : "XXX", // "200"
+        "errorMsg"          : "XXXXXXXX", // "Success"
+        "studentName"       : "XXX XXX XXX",
+        "totalAmount"       : "XXXX", // "2360"
+        "trxId"             : "XXXXXXXXXX",
+        "middlewarePayTime" : "XXXXXXXXXXXXX", // "20230830064416"
+        "refNumber"         : "017XXXXXXXX",
+        "amountBreakdown"   : 
+        {
+            "totalServiceCharge": 20,
+            "totalInvoice"      : 2
         }
     }
 ```
@@ -149,15 +147,15 @@ The Default status. Other error and information status code will be listed under
 
 ## SearchTransaction Request:
 
-SearchTransaction: </api/v1/payment/ussd/bkash/searchTransaction>
+SearchTransaction: </api/v1/payment/ussd/rocket/getPaymentStatus>
 
 Method: POST
 
 ```json
     {
-        "UserName": "XXXXXXX",
-        "Password": "XXXXXXX",
-        "TrxId": "XXXXXXXXXX"
+        "userId": "XXXXXXX",
+        "password": "XXXXXXX",
+        "trxId": "XXXXXXXXXX"
     }
 ```
 
@@ -172,12 +170,12 @@ The Default status. Other error and information status code will be listed under
 
 ```json
     {
-        "ErrorCode": "XXX", // "200"
-        "ErrorMsg": "XXXXXXXX", // "Success"
-        "TotalAmount": XXXX, // "2360"
-        "TrxId": "XXXXXXXXXX",
-        "MiddlewarePayTime": "XXXXXXXXXXXXX", // "20230830064416"
-        "RefNumber": "01777515669",
+        "errorCode": "XXX", // "200"
+        "errorMsg": "XXXXXXXX", // "Success"
+        "totalAmount": XXXX, // "2360"
+        "trxId": "XXXXXXXXXX",
+        "middlewarePayTime": "XXXXXXXXXXXXX", // "20230830064416"
+        "refNumber": "017XXXXXXXX",
     }
 ```
 
